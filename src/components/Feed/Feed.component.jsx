@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { CalendarViewDay, Subscriptions, Create, EventNote, Image } from '@mui/icons-material'
 import { db } from '../../utils/firebase'
-import { getDocs, serverTimestamp, collection, addDoc, onSnapshot } from 'firebase/firestore'
+import { getDocs, serverTimestamp, collection, addDoc } from 'firebase/firestore'
 import './Feed.styles.css'
 import InputOption from '../InputOption/InputOption.component'
 import Post from '../Post/Post.component'
@@ -34,7 +34,7 @@ const Feed = () => {
 
 
 
-    }, [])
+    }, [collectionRef])
 
     const sendPost = async (e) => {
         e.preventDefault();
