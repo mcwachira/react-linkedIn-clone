@@ -5,6 +5,7 @@ import HeaderOptions from './HeaderOptions/HeaderOptions.component';
 import HomeIcon from '@mui/icons-material/Home';
 import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
 import { BusinessCenter, Chat, Notifications } from '@mui/icons-material';
+import { useDispatch } from 'react-redux';
 import { logOut } from '../../redux/user/userSlice'
 import { signOut } from "firebase/auth";
 import { auth } from '../../utils/firebase'
