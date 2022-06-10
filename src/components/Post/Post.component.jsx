@@ -1,16 +1,20 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
 import InputOption from '../InputOption/InputOption.component'
 import { ChatOutlined, SendOutlined, ShareOutlined, ThumbUpAltOutlined } from '@mui/icons-material'
 import { Avatar } from '@mui/material'
 import './Post.styles.css'
-const Post = ({ name, description, message, photoUrl }) => {
 
+import { useSelector } from 'react-redux';
+import { selectUser } from '../../redux/user/userSlice';
 
+const Post = forwardRef(({ name, description, message, photoUrl }, ref) => {
+
+    const user = useSelector(selectUser)
     return (
         <div className='post'>
 
             <div className="post__header">
-                <Avatar src={photoUrl} />
+                <Avatar src={user.photoUrl}> {name[0]}</Avatar>
 
                 <div className="post__info">
                     <h2>
@@ -36,6 +40,6 @@ const Post = ({ name, description, message, photoUrl }) => {
             </div>
         </div>
     )
-}
+})
 
 export default Post

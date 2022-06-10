@@ -1,8 +1,13 @@
 import React from 'react'
 import './Sidebar.styles.css'
 import { Avatar } from '@mui/material'
+import { selectUser } from '../../redux/user/userSlice'
+import { useSelector } from 'react-redux'
 
 const Sidebar = () => {
+
+    //getting user information from state
+    const user = useSelector(selectUser)
 
     //function rendering jsx items
 
@@ -18,11 +23,14 @@ const Sidebar = () => {
 
             <div className="sidebar__top">
                 <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="react" />
-                <Avatar className='sidebar__avatar' />
+                <Avatar src={user.photoUrl} className='sidebar__avatar'>
+                    {user.email}
+                    {/* {user?.email[0]} */}
+                </Avatar>
                 <h2>
-                    Mcwachira
+                    {user.displayName}
                 </h2>
-                <h4> mcwachira@outlook.com</h4>
+                <h4>{user.email}</h4>
             </div>
 
 
@@ -61,5 +69,6 @@ const Sidebar = () => {
         </div>
     )
 }
+
 
 export default Sidebar

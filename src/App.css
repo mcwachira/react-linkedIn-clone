@@ -8,4 +8,9 @@
 
 .app__body {
     display: flex;
+    margin-top: 35px;
+    /* min-width: 1200px; */
+    max-width: 100%;
+    margin-left: 20px;
+    margin-right: 20px;
 }

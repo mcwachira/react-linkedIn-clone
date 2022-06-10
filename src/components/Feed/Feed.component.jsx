@@ -5,13 +5,16 @@ import { getDocs, serverTimestamp, collection, addDoc, onSnapshot } from 'fireba
 import './Feed.styles.css'
 import InputOption from '../InputOption/InputOption.component'
 import Post from '../Post/Post.component'
+import { useSelector } from 'react-redux';
+import { selectUser } from '../../redux/user/userSlice';
+import FlipMove from 'react-flip-move'
 
 const Feed = () => {
 
     const [posts, setPosts] = useState([])
     const [input, setInput] = useState("")
 
-
+    const user = useSelector(selectUser)
 
     const collectionRef = collection(db, 'posts')
 
@@ -37,10 +40,10 @@ const Feed = () => {
         e.preventDefault();
 
         await addDoc(collectionRef, {
-            name: 'Charles Wachira',
-            description: 'test data',
+            name: user.displayName,
+            description: user.email,
             message: input,
-            photoUrl: "",
+            photoUrl: user.photoUrl || "",
             timeStamp: serverTimestamp()
 
         })
@@ -67,12 +70,13 @@ const Feed = () => {
 
                 </div>
             </div>
+            <FlipMove>
 
-            {posts.map((post) => (<Post key={post.id} name={post.name} description={post.description} message={post.message} photoUrl={post.photoUrl} />))}
+                {posts.map((post) => (<Post key={post.id} name={post.name} description={post.description} message={post.message} photoUrl={post.photoUrl} />))}
 
 
-            {/* <Post name="Charles Wachira" description=" this is a a post" message=" post " photoUrl="https://pbs.twimg.com/profile_images/1350089705497440256/DW-6yNjR_400x400.jpg" /> */}
-
+                {/* <Post name="Charles Wachira" description=" this is a a post" message=" post " photoUrl="https://pbs.twimg.com/profile_images/1350089705497440256/DW-6yNjR_400x400.jpg" /> */}
+            </FlipMove>
         </div>
     )
 }

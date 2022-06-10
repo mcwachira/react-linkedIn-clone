@@ -5,17 +5,31 @@ import HeaderOptions from './HeaderOptions/HeaderOptions.component';
 import HomeIcon from '@mui/icons-material/Home';
 import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
 import { BusinessCenter, Chat, Notifications } from '@mui/icons-material';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectUser } from '../../redux/user/userSlice';
+import { logOut } from '../../redux/user/userSlice'
+import { signOut } from "firebase/auth";
+import { auth } from '../../utils/firebase'
 const Header = () => {
+
+    const user = useSelector(selectUser)
+    const dispatch = useDispatch();
+    const LogOutFunc = () => {
+        dispatch(logOut())
+        signOut(auth).then(() => {
+            alert('signed out succesfully')
+        }).catch((error) => (alert(error)))
+    }
     return (
 
         <div className="header">
 
 
             <div className="header__left">
-                <img src="https://cdn-icons.flaticon.com/png/512/3536/premium/3536505.png?token=exp=1654566155~hmac=c2b52d740be341eb4c64398eedf39c20" alt="" />
+                <img src="https://brandlogos.net/wp-content/uploads/2016/06/linkedin-logo.png" alt="" />
                 <div className="header__search">
                     <SearchIcon />
-                    <input type="text" />
+                    <input type="text" placeholder='Search' />
                 </div>
             </div>
 
@@ -25,7 +39,7 @@ const Header = () => {
                 <HeaderOptions Icon={BusinessCenter} title="Jobs" />
                 <HeaderOptions Icon={Chat} title="Messaging" />
                 <HeaderOptions Icon={Notifications} title="Notifications" />
-                <HeaderOptions avatar="https://pbs.twimg.com/profile_images/1350089705497440256/DW-6yNjR_400x400.jpg " title="me" />
+                <HeaderOptions avatar={true} title='me' LogOff={LogOutFunc} />
             </div>
         </div>
     )

@@ -1,7 +1,13 @@
 import React from 'react'
 import './HeaderOptions.styles.css'
 import Avatar from '@mui/material/Avatar'
-const HeaderOptions = ({ avatar, title, Icon }) => {
+import { useSelector } from 'react-redux';
+import { selectUser } from '../../../redux/user/userSlice';
+
+
+const HeaderOptions = ({ avatar, title, Icon, LogOff }) => {
+
+    const user = useSelector(selectUser)
     return (
         <div className="headerOption">
             {
@@ -9,10 +15,10 @@ const HeaderOptions = ({ avatar, title, Icon }) => {
             }
 
             {
-                avatar && <Avatar className="headerOption__icon" src={avatar} />
+                avatar && <Avatar className="headerOption__icon" src={user?.photoUrl} onClick={LogOff} > {user?.email} </Avatar>
             }
             <h3 className='headerOption__title'>
-                {title}
+                {user.displayName}
             </h3>
         </div>
     )
