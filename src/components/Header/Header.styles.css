@@ -5,7 +5,9 @@
     display: flex;
     justify-content: space-evenly;
     padding: 10px 0;
+    background-color: #fff;
     border-bottom: .2 solid gray;
+
     width: 100%;
 }
 
