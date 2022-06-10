@@ -5,15 +5,11 @@ import HeaderOptions from './HeaderOptions/HeaderOptions.component';
 import HomeIcon from '@mui/icons-material/Home';
 import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
 import { BusinessCenter, Chat, Notifications } from '@mui/icons-material';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectUser } from '../../redux/user/userSlice';
 import { logOut } from '../../redux/user/userSlice'
 import { signOut } from "firebase/auth";
 import { auth } from '../../utils/firebase'
 const Header = () => {
 
-    const user = useSelector(selectUser)
-    const dispatch = useDispatch();
     const LogOutFunc = () => {
         dispatch(logOut())
         signOut(auth).then(() => {

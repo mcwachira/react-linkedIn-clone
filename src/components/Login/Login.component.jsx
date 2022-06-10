@@ -39,6 +39,7 @@ const Login = () => {
                 )
             }).catch((error) => {
                 const errorCode = error.code;
+                 console.log(errorCode)
                 const errorMessage = error.message;
                 alert(errorMessage)
             })
@@ -61,6 +62,7 @@ const Login = () => {
         }).catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
+            console.log(errorCode)
             console.log('error', errorMessage)
         })
     }
