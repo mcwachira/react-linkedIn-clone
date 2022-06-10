@@ -10,7 +10,7 @@ import { logOut } from '../../redux/user/userSlice'
 import { signOut } from "firebase/auth";
 import { auth } from '../../utils/firebase'
 const Header = () => {
-
+    const dispatch = useDispatch;
     const LogOutFunc = () => {
         dispatch(logOut())
         signOut(auth).then(() => {
